@@ -15,7 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
         rel="stylesheet">
     <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 
 <body>
@@ -57,13 +57,16 @@
                     class="w-14 h-14 mx-auto gold"></i>
                 <h2 class="font-serif text-4xl mt-3">Order placed</h2>
                 <p class="mt-2 text-sm text-white/65">Thank you for shopping with MORVEX. Your order number is <b
-                        id="oid"></b>.</p><a href="index.html" class="btn btn-p mt-6">Back to Home</a>
+                        id="oid"></b>.</p>
+                <p class="mt-3 text-xs text-white/55">Your order details were sent to our WhatsApp. If it did not open,
+                    <a id="wa" class="underline gold" target="_blank" rel="noopener" href="#">tap here to send it</a>.
+                </p><a href="index.html" class="btn btn-p mt-6">Back to Home</a>
             </div>
         </div>
     </section>
     <div id="site-footer"></div>
-    <script src="js/components.js?v=6"></script>
-    <script src="js/main.js?v=6"></script>
+    <script src="js/components.js?v=8"></script>
+    <script src="js/main.js?v=8"></script>
     <script>
         const rows = getCart().map(i => ({ ...PRODUCTS.find(p => p.id == i.id), qty: i.qty })), sub = rows.reduce((a, x) => a + x.price * x.qty, 0), shp = sub && sub < 1999 ? 99 : 0;
         steps.innerHTML = ["Address", "Payment", "Review"].map((s, i) => '<span class="text-center ' + (i ? "opacity-60" : "") + '"><b class="opt on w-8 h-8 mx-auto mb-1 ' + (i ? "!bg-none !bg-white/10 !text-[#F4EEE6]" : "") + '">' + (i + 1) + '</b>' + s + '</span>').join("");
@@ -72,7 +75,9 @@
         f.onsubmit = e => {
             e.preventDefault(); const v = f.elements; if (!rows.length) { er.textContent = "Your bag is empty."; return }
             if (!v.n.value.trim() || v.a.value.trim().length < 5 || !v.c.value.trim() || !/^\d{6}$/.test(v.z.value.trim()) || !/^[6-9]\d{9}$/.test(v.p.value.trim())) { er.textContent = "Please fill all fields correctly (6-digit pincode, 10-digit mobile)."; return }
-            setCart([]); co.classList.add("hidden"); ok.classList.remove("hidden"); oid.textContent = "MVX" + Date.now().toString().slice(-7); lucide.createIcons()
+            const id = "MVX" + Date.now().toString().slice(-7), pm = f.querySelector("input[name=pm]:checked").parentElement.textContent.trim();
+            const msg = "*New MORVEX Order* #" + id + "\n\n*Customer:* " + v.n.value.trim() + "\n*Mobile:* " + v.p.value.trim() + "\n*Address:* " + v.a.value.trim() + ", " + v.c.value.trim() + " - " + v.z.value.trim() + "\n*Payment:* " + pm + "\n\n*Items:*\n" + rows.map((x, i) => (i + 1) + ". " + x.name + " x" + x.qty + " - " + money(x.price * x.qty)).join("\n") + "\n\nSubtotal: " + money(sub) + "\nShipping: " + (shp ? money(shp) : "Free") + "\n*Total: " + money(sub + shp) + "*";
+            setCart([]); co.classList.add("hidden"); ok.classList.remove("hidden"); oid.textContent = id; lucide.createIcons(); sendWA(msg, wa)
         };
     </script>
 </body>

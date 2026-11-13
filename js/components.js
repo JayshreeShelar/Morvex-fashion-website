@@ -1,4 +1,8 @@
 const NAV = [["Home", "index.html"], ["Men", "men.html"], ["Women", "women.html"], ["Kids", "kids.html"], ["Collections", "collections.html"], ["Sale", "sale.html"], ["About", "about.html"], ["Contact", "contact.html"]];
+/* ===== WhatsApp orders: apla number ithe taka (country code sobat, + ani space shivay) ===== */
+const WA_NUMBER = "919876543210";
+const waLink = m => "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(m);
+function sendWA(m, fallbackEl) { const u = waLink(m); if (fallbackEl) fallbackEl.href = u; const w = window.open(u, "_blank"); if (!w) location.href = u }
 const wishIds = () => { try { return JSON.parse(localStorage.getItem("mvx-wish") || "[]") } catch (e) { return [] } };
 const isWished = id => wishIds().includes(+id);
 const HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
@@ -56,9 +60,8 @@ document.addEventListener("DOMContentLoaded", () => { renderHeader(); wishBadge(
 (function () {
     const rm = matchMedia("(prefers-reduced-motion:reduce)").matches, fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
     try {
-        const nav = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || {}, reload = nav.type === "reload", internal = document.referrer && new URL(document.referrer).origin === location.origin;
-        if (!rm && (reload || !internal)) {
-            document.documentElement.classList.add("has-pl"); const p = document.createElement("div"); p.className = "preload"; p.setAttribute("aria-hidden", "true");
+        if (!rm && !sessionStorage.getItem("mvx-pl")) {
+            sessionStorage.setItem("mvx-pl", "1"); document.documentElement.classList.add("has-pl"); const p = document.createElement("div"); p.className = "preload"; p.setAttribute("aria-hidden", "true");
             const sp = Array.from({ length: 18 }, (_, i) => '<i class="pl-s" style="left:' + (4 + i * 5.3 + (i % 3) * 1.5).toFixed(1) + '%;--z:' + (2 + (i % 3)) + 'px;--t:' + (2.4 + (i % 5) * .45).toFixed(2) + 's;--d:' + ((i * .17) % 1.6).toFixed(2) + 's"></i>').join("");
             p.innerHTML = '<div class="pl-half pl-l"></div><div class="pl-half pl-r"></div><div class="pl-fx"><i class="pl-orb pl-o1"></i><i class="pl-orb pl-o2"></i>' + sp + '</div><div class="pl-c"><div class="pl-mark"><svg class="pl-ring" viewBox="0 0 120 120"><defs><linearGradient id="plg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4E4CC"/><stop offset="1" stop-color="#B99A72"/></linearGradient></defs><circle cx="60" cy="60" r="56"/></svg><img src="assets/favicon.svg" alt=""></div><div class="pl-word">' + "MORVEX".split("").map((l, i) => '<span style="--i:' + i + '">' + l + '</span>').join("") + '</div><p class="pl-tag">ELEVATED ESSENTIALS &middot; MODERN LIVING</p><div class="pl-bar"><i></i></div><span class="pl-pct">0%</span></div>';
             document.body.prepend(p); const pc = p.querySelector(".pl-pct"), t0 = performance.now(); (function f(t) { const k = Math.min((t - t0 - 250) / 1900, 1); if (k > 0) pc.textContent = Math.round(100 * (1 - Math.pow(1 - k, 2.2))) + "%"; if (k < 1) requestAnimationFrame(f); else pc.textContent = "100%" })(t0); setTimeout(() => p.remove(), 3500)

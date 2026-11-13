@@ -15,7 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
         rel="stylesheet">
     <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 
 <body>
@@ -40,8 +40,8 @@
         </div>
     </section>
     <div id="site-footer"></div>
-    <script src="js/components.js?v=6"></script>
-    <script src="js/main.js?v=6"></script>
+    <script src="js/components.js?v=8"></script>
+    <script src="js/main.js?v=8"></script>
     <script>
         const pid = +new URLSearchParams(location.search).get("id") || 9, P = PRODUCTS.find(x => x.id === pid) || PRODUCTS[8]; document.title = "MORVEX – " + P.name; let qty = 1, size = "M";
         pbg.src = "assets/" + P.img + ".jpg";
