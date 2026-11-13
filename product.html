@@ -15,7 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
         rel="stylesheet">
     <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
-    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 
 <body>
@@ -40,8 +40,8 @@
         </div>
     </section>
     <div id="site-footer"></div>
-    <script src="js/components.js?v=5"></script>
-    <script src="js/main.js?v=5"></script>
+    <script src="js/components.js?v=6"></script>
+    <script src="js/main.js?v=6"></script>
     <script>
         const pid = +new URLSearchParams(location.search).get("id") || 9, P = PRODUCTS.find(x => x.id === pid) || PRODUCTS[8]; document.title = "MORVEX – " + P.name; let qty = 1, size = "M";
         pbg.src = "assets/" + P.img + ".jpg";
@@ -51,7 +51,7 @@
 <p class="mt-4 text-white/70 leading-relaxed">Premium ${P.name.toLowerCase()} crafted with refined fabric and careful finishing. Designed to look sharp, feel comfortable and last season after season.</p>
 <p class="mt-5 eyebrow">SIZE</p><div id="sz" class="flex gap-2 mt-2">${["S", "M", "L", "XL", "XXL"].map(s => `<button data-s="${s}" class="opt w-11 h-11 text-sm ${s == size ? "on" : ""}">${s}</button>`).join("")}</div>
 <div class="mt-5 flex items-center gap-4"><div class="glass rounded-full flex items-center"><button id="qm" class="w-10 h-10" aria-label="Less">−</button><b id="qv" class="w-8 text-center">1</b><button id="qp" class="w-10 h-10" aria-label="More">+</button></div><span class="text-xs text-white/50">In stock · ships in 24 hrs</span></div>
-<div class="mt-5 flex flex-wrap gap-3"><button id="ad" class="btn btn-p">Add to Cart</button><button id="bn" class="btn">Buy Now</button></div>
+<div class="mt-5 flex flex-wrap gap-3"><button id="ad" class="btn btn-p">Add to Cart</button><button id="bn" class="btn">Buy Now</button><button class="btn wbtn ${isWished(P.id) ? 'wished' : ''}" data-wish="${P.id}" aria-pressed="${isWished(P.id)}" onclick="toggleWish(${P.id},this)">${HEART} Wishlist</button></div>
 <div class="mt-6 grid grid-cols-3 gap-3 text-[11px] text-white/60"><span class="flex gap-1.5 items-center"><i data-lucide="truck" class="w-4 h-4 gold"></i>Free Shipping</span><span class="flex gap-1.5 items-center"><i data-lucide="rotate-ccw" class="w-4 h-4 gold"></i>Easy Returns</span><span class="flex gap-1.5 items-center"><i data-lucide="shield-check" class="w-4 h-4 gold"></i>Secure Payment</span></div></div>`;
         sz.onclick = e => { const s = e.target.dataset.s; if (!s) return; size = s;[...sz.children].forEach(b => b.classList.toggle("on", b.dataset.s == s)) };
         qm.onclick = () => qv.textContent = qty = Math.max(1, qty - 1); qp.onclick = () => qv.textContent = ++qty;

@@ -15,7 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
         rel="stylesheet">
     <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
-    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 
 <body>
@@ -97,13 +97,13 @@
 
     <div id="cta"></div>
     <div id="site-footer"></div>
-    <script src="js/components.js?v=5"></script>
-    <script src="js/main.js?v=5"></script>
+    <script src="js/components.js?v=6"></script>
+    <script src="js/main.js?v=6"></script>
     <script>
         document.getElementById("hero").innerHTML = hero({ label: "PREMIUM FASHION BRAND", title: 'Elevated Essentials<br><i class="text-[#E8D7C3]">for Modern Living</i>', sub: "Timeless style, premium quality, and versatile pieces designed for today and beyond.", imgs: ["hero", "w4", "m5"], btns: [["Shop New Arrivals →", "collections.html", 1], ["▶ Watch the Collection", "#next"]], chips: [["star", "4.9/5 rated"], ["users", "10K+ customers"], ["truck", "Free shipping ₹1999+"]], badge: ["Autumn / Winter 2026", "New season is here"] });
         const w = ["New Arrivals", "Free Shipping Above ₹1999", "Premium Fabrics", "Easy 30-Day Returns", "Flat 20% Off First Order", "Made for Modern Living"];
         mq.innerHTML = [...w, ...w, ...w, ...w].map(x => '<span class="px-8">' + x + ' <span class="gold">✦</span></span>').join("");
-        cats.innerHTML = [["Men's", "men"], ["Women's", "women"], ["Kids", "kids"], ["Western", "collections"], ["Ethnic", "collections"], ["Accessories", "collections"]].map(([n, h], i) => '<a href="' + h + '.html" class="tile glass ' + (i % 2 ? "leaf2" : "leaf") + ' reveal" style="transition-delay:' + i * 80 + 'ms"><div class="' + (i % 2 ? "timg2" : "timg") + ' fitw"><img class="fitbg" src="assets/cat' + (i + 1) + '.jpg?v=5" alt=""><img class="fitimg" src="assets/cat' + (i + 1) + '.jpg?v=5" alt="' + n + '"></div><p class="text-center text-[13px] py-2.5">' + n + (i < 5 ? " Collection" : "") + ' →</p></a>').join("");
+        cats.innerHTML = [["Men's", "men"], ["Women's", "women"], ["Kids", "kids"], ["Western", "collections"], ["Ethnic", "collections"], ["Accessories", "collections"]].map(([n, h], i) => '<a href="' + h + '.html" class="tile glass ' + (i % 2 ? "leaf2" : "leaf") + ' reveal" style="transition-delay:' + i * 80 + 'ms"><div class="' + (i % 2 ? "timg2" : "timg") + ' fitw"><img class="fitbg" src="assets/cat' + (i + 1) + '.jpg?v=6" alt=""><img class="fitimg" src="assets/cat' + (i + 1) + '.jpg?v=6" alt="' + n + '"></div><p class="text-center text-[13px] py-2.5">' + n + (i < 5 ? " Collection" : "") + ' →</p></a>').join("");
         const ban = o => o.wide ? '<a href="' + o.h + '" class="banner banner-wide lift reveal ' + o.c + '" style="background-image:linear-gradient(120deg,' + o.g[0] + ',' + o.g[1] + ')"><div class="bw-txt relative z-10"><p class="eyebrow">' + o.e + '</p><h3 class="font-serif text-3xl md:text-5xl mt-2 leading-tight">' + o.t + '</h3><p class="text-sm text-white/75 mt-2">' + o.s + '</p><span class="btn btn-p mt-5">' + o.b + ' →</span></div><div class="bw-img fitw framed leaf2 z-10"><img class="fitimg" style="object-position:center 14%" src="assets/' + o.i + '.jpg" alt="Burgundy evening gown"></div></a>' : '<a href="' + o.h + '" class="banner lift reveal ' + o.c + '" style="background-image:linear-gradient(120deg,' + o.g[0] + ',' + o.g[1] + ')"><div class="relative z-10 p-7 md:p-10 w-[60%]"><p class="eyebrow">' + o.e + '</p><h3 class="font-serif text-3xl md:text-5xl mt-2 leading-tight">' + o.t + '</h3><p class="text-sm text-white/75 mt-2">' + o.s + '</p><span class="btn btn-p mt-5">' + o.b + ' →</span></div><div class="fitw framed leaf2 absolute right-4 top-4 bottom-4 w-[34%] z-10"><img class="fitimg" src="assets/' + o.i + '.jpg" alt=""></div></a>';
         banners.innerHTML = [{ h: "women.html", c: "md:col-span-2 min-h-[340px]", g: ["rgba(122,31,61,.6)", "rgba(40,20,28,.7)"], e: "AUTUMN / WINTER 2026", t: "New Season<br>Collection", s: "Fresh styles. New vibes.", b: "Explore Collection", i: "season", wide: 1, p: "30%" },
         { h: "men.html", c: "min-h-[300px]", g: ["rgba(40,40,46,.7)", "rgba(20,18,17,.8)"], e: "WEDDING &amp; FESTIVE", t: "The Men&rsquo;s<br>Evening Edit", s: "Tuxedos, sherwanis and more.", b: "Shop Men", i: "m7", p: "28%" },

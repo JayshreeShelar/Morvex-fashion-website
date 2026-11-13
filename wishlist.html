@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MORVEX – My Wishlist</title>
+    <meta name="description" content="MORVEX – premium fashion and lifestyle brand.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
+    <link rel="stylesheet" href="css/style.css?v=6">
+</head>
+
+<body>
+    <div id="site-header"></div>
+    <section class="hero !items-start"><img src="assets/w4.jpg" alt=""
+            class="bg w-full h-full object-cover opacity-25 blur-2xl scale-125">
+        <div class="bg bg-[#141211]/70"></div>
+        <div class="wrap relative py-10">
+            <p class="eyebrow rise">YOUR FAVOURITES</p>
+            <div class="flex justify-between items-end flex-wrap gap-3 rise d1">
+                <div>
+                    <h1 class="font-serif text-5xl">My Wishlist</h1>
+                    <p id="wc" class="text-sm text-white/60 mt-2"></p>
+                </div>
+                <div class="flex gap-3 flex-wrap"><button id="all" class="btn btn-p btn-sm">Add all to bag</button><a
+                        href="collections.html" class="btn btn-sm">Continue Shopping →</a></div>
+            </div>
+            <div id="wg" class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"></div>
+        </div>
+    </section>
+    <div id="site-footer"></div>
+    <script src="js/components.js?v=6"></script>
+    <script src="js/main.js?v=6"></script>
+    <script>
+        const draw = () => {
+            const ps = wishIds().map(id => PRODUCTS.find(p => p.id == id)).filter(Boolean);
+            wc.textContent = ps.length ? ps.length + (ps.length > 1 ? " saved items" : " saved item") : ""; all.classList.toggle("hidden", !ps.length);
+            wg.className = ps.length ? "mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5" : "mt-8";
+            wg.innerHTML = ps.length ? ps.map(card).join("") : '<div class="glass gcard text-center py-14"><span class="wbtn wished inline-block"><svg style="width:42px;height:42px" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><p class="font-serif text-3xl mt-3">Your wishlist is empty</p><p class="text-sm text-white/60 mt-1">Tap the heart on any product to save it here.</p><a href="collections.html" class="btn btn-p mt-5">Browse the collection</a></div>';
+            if (window.lucide) lucide.createIcons(); initFx()
+        };
+        window.onWish = (id, on) => { if (!on) setTimeout(draw, 350) };
+        all.onclick = () => { wishIds().forEach(id => addToCart(id)); toast("All items added to your bag") };
+        draw();
+    </script>
+</body>
+
+</html>
