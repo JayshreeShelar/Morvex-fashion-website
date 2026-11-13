@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MORVEX – Product</title>
+    <meta name="description" content="MORVEX – premium fashion and lifestyle brand.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
+    <link rel="stylesheet" href="css/style.css?v=5">
+</head>
+
+<body>
+    <div id="site-header"></div>
+    <section class="hero"><img id="pbg" alt="" class="bg w-full h-full object-cover opacity-30 blur-2xl scale-125">
+        <div class="bg bg-gradient-to-r from-[#141211] via-[#141211]/80 to-[#141211]/30"></div>
+        <div class="wrap relative grid lg:grid-cols-2 gap-10 items-center py-8" id="pd"></div><a href="#next"
+            class="scroll-ind" aria-label="Scroll down"><i data-lucide="chevrons-down" class="w-6 h-6"></i></a>
+    </section>
+    <section id="next" class="sec">
+        <div class="wrap max-w-4xl">
+            <div class="glass gcard !p-0 overflow-hidden">
+                <div class="flex gap-1 border-b border-white/15 px-3 pt-3" id="tabs"></div>
+                <div id="tp" class="p-6 text-sm leading-relaxed"></div>
+            </div>
+        </div>
+    </section>
+    <section class="sec band">
+        <div class="wrap">
+            <h2 class="h2 text-center reveal">You May Also Like</h2>
+            <div id="rel" class="mt-9 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"></div>
+        </div>
+    </section>
+    <div id="site-footer"></div>
+    <script src="js/components.js?v=5"></script>
+    <script src="js/main.js?v=5"></script>
+    <script>
+        const pid = +new URLSearchParams(location.search).get("id") || 9, P = PRODUCTS.find(x => x.id === pid) || PRODUCTS[8]; document.title = "MORVEX – " + P.name; let qty = 1, size = "M";
+        pbg.src = "assets/" + P.img + ".jpg";
+        document.getElementById("pd").innerHTML = `<div class="rise relative"><div class="leaf zoom fitw ring mx-auto h-[min(66vh,640px)] min-h-[380px] aspect-[2/3]">${fit(P.img, P.name)}</div></div>
+<div class="rise d1 glass gcard !p-7 md:!p-9"><p class="text-[11px] text-white/45">Home / ${P.cat} / ${P.name}</p><h1 class="font-serif text-4xl md:text-5xl leading-tight mt-2">${P.name}</h1><p class="gold mt-2 text-sm">★★★★★ <span class="text-white/60">4.8 (2.5K reviews)</span></p>
+<p class="mt-4 text-3xl font-medium">${money(P.price)} ${P.old ? `<s class="text-base opacity-50">${money(P.old)}</s> <span class="chip align-middle">${Math.round((1 - P.price / P.old) * 100)}% OFF</span>` : ""}</p>
+<p class="mt-4 text-white/70 leading-relaxed">Premium ${P.name.toLowerCase()} crafted with refined fabric and careful finishing. Designed to look sharp, feel comfortable and last season after season.</p>
+<p class="mt-5 eyebrow">SIZE</p><div id="sz" class="flex gap-2 mt-2">${["S", "M", "L", "XL", "XXL"].map(s => `<button data-s="${s}" class="opt w-11 h-11 text-sm ${s == size ? "on" : ""}">${s}</button>`).join("")}</div>
+<div class="mt-5 flex items-center gap-4"><div class="glass rounded-full flex items-center"><button id="qm" class="w-10 h-10" aria-label="Less">−</button><b id="qv" class="w-8 text-center">1</b><button id="qp" class="w-10 h-10" aria-label="More">+</button></div><span class="text-xs text-white/50">In stock · ships in 24 hrs</span></div>
+<div class="mt-5 flex flex-wrap gap-3"><button id="ad" class="btn btn-p">Add to Cart</button><button id="bn" class="btn">Buy Now</button></div>
+<div class="mt-6 grid grid-cols-3 gap-3 text-[11px] text-white/60"><span class="flex gap-1.5 items-center"><i data-lucide="truck" class="w-4 h-4 gold"></i>Free Shipping</span><span class="flex gap-1.5 items-center"><i data-lucide="rotate-ccw" class="w-4 h-4 gold"></i>Easy Returns</span><span class="flex gap-1.5 items-center"><i data-lucide="shield-check" class="w-4 h-4 gold"></i>Secure Payment</span></div></div>`;
+        sz.onclick = e => { const s = e.target.dataset.s; if (!s) return; size = s;[...sz.children].forEach(b => b.classList.toggle("on", b.dataset.s == s)) };
+        qm.onclick = () => qv.textContent = qty = Math.max(1, qty - 1); qp.onclick = () => qv.textContent = ++qty;
+        ad.onclick = () => { addToCart(P.id, qty); toast(qty + " × added to your bag") }; bn.onclick = () => { addToCart(P.id, qty); location.href = "cart.html" };
+        const TABS = { Description: `<p>A luxurious ${P.name.toLowerCase()} crafted with premium fabric and exquisite detailing. Tailored for a confident fit, finished with quality stitching and a soft inner lining.</p><ul class="list-disc ml-5 mt-3 text-white/60"><li>Premium fabric with a refined hand-feel</li><li>Tailored, true-to-size fit</li><li>Dry clean recommended</li></ul>`, "Size Guide": `<div class="overflow-x-auto"><table class="w-full text-left"><tr class="border-b border-white/20"><th class="py-2">Size</th><th>Chest (in)</th><th>Waist (in)</th><th>Length (in)</th></tr>${[["S", 36, 30, 27], ["M", 38, 32, 28], ["L", 40, 34, 29], ["XL", 42, 36, 30], ["XXL", 44, 38, 31]].map(r => `<tr class="border-b border-white/10"><td class="py-2">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</table></div>`, Reviews: [["Aarav M.", "Excellent fabric and fit. Looks even better in person."], ["Neha K.", "Gifted this and it was loved. Quick delivery too."], ["Rohan S.", "Great value for the quality. Will order again."]].map(([n, t]) => `<div class="border-b border-white/10 py-3"><p class="gold">★★★★★ <b class="text-[#F4EEE6]">${n}</b></p><p class="text-white/60">${t}</p></div>`).join("") };
+        const show = k => { tabs.innerHTML = Object.keys(TABS).map(t => `<button data-t="${t}" class="px-5 py-3 text-sm border-b-2 transition ${t == k ? "border-[#B99A72] font-medium" : "border-transparent text-white/55 hover:text-white"}">${t}</button>`).join(""); tp.innerHTML = TABS[k] };
+        tabs.onclick = e => { if (e.target.dataset.t) show(e.target.dataset.t) }; show("Description");
+        rel.innerHTML = PRODUCTS.filter(x => x.id !== P.id && x.cat === P.cat).slice(0, 4).map(card).join("");
+    </script>
+</body>
+
+</html>

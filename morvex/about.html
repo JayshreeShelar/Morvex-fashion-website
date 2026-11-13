@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MORVEX – About Us</title>
+    <meta name="description" content="MORVEX – premium fashion and lifestyle brand.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
+    <link rel="stylesheet" href="css/style.css?v=5">
+</head>
+
+<body>
+    <div id="site-header"></div>
+    <section id="hero"></section>
+    <section id="next" class="sec">
+        <div class="wrap text-center reveal">
+            <p class="eyebrow">OUR STORY</p>
+            <h2 class="h2 mt-3 max-w-3xl mx-auto">More than clothing. A way of living well.</h2>
+            <p class="mt-5 text-white/70 leading-relaxed max-w-3xl mx-auto">At MORVEX, we believe fashion is more than
+                just clothing. It's a lifestyle. Our journey is rooted in quality, creativity and a passion for modern
+                elegance. We design for real life: pieces that move from the office to the evening, from the festival to
+                the weekend.</p>
+        </div>
+    </section>
+    <section class="sec band">
+        <div class="wrap grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="reveal lift glass gcard"><b class="font-serif text-5xl gold" data-count="2019">0</b>
+                <p class="text-xs text-white/60">Founded in Pune</p>
+            </div>
+            <div class="reveal lift glass gcard"><b class="font-serif text-5xl gold" data-count="10000"
+                    data-suf="+">0</b>
+                <p class="text-xs text-white/60">Happy customers</p>
+            </div>
+            <div class="reveal lift glass gcard"><b class="font-serif text-5xl gold" data-count="500" data-suf="+">0</b>
+                <p class="text-xs text-white/60">Styles designed</p>
+            </div>
+            <div class="reveal lift glass gcard"><b class="font-serif text-5xl gold" data-count="120" data-suf="+">0</b>
+                <p class="text-xs text-white/60">Artisans &amp; partners</p>
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="wrap">
+            <h2 class="h2 text-center reveal">What we stand for</h2>
+            <div class="mt-9 grid md:grid-cols-3 gap-5" id="vals"></div>
+        </div>
+    </section>
+    <section class="sec band">
+        <div class="wrap grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
+            <div class="reveal grid grid-cols-2 gap-4">
+                <div class="leaf zoom fitw glass aspect-[2/3]"><img class="fitbg" src="assets/w7.jpg" alt=""><img
+                        class="fitimg" src="assets/w7.jpg" alt=""></div>
+                <div class="leaf2 zoom fitw glass aspect-[2/3] mt-10"><img class="fitbg" src="assets/m7.jpg" alt=""><img
+                        class="fitimg" src="assets/m7.jpg" alt=""></div>
+            </div>
+            <div>
+                <h2 class="h2 reveal">Our journey</h2>
+                <ol class="mt-8 border-l border-[#B99A72]/50 ml-3 space-y-7" id="tl"></ol>
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="wrap grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="reveal leaf zoom fitw glass aspect-[2/3]"><img class="fitbg" src="assets/m1.jpg" alt=""><img
+                    class="fitimg" src="assets/m1.jpg" alt=""></div>
+            <div class="reveal leaf2 zoom fitw glass aspect-[2/3]"><img class="fitbg" src="assets/w3.jpg" alt=""><img
+                    class="fitimg" src="assets/w3.jpg" alt=""></div>
+            <div class="reveal leaf zoom fitw glass aspect-[2/3]"><img class="fitbg" src="assets/k5.jpg" alt=""><img
+                    class="fitimg" src="assets/k5.jpg" alt=""></div>
+            <div class="reveal leaf2 zoom fitw glass aspect-[2/3]"><img class="fitbg" src="assets/m2.jpg" alt=""><img
+                    class="fitimg" src="assets/m2.jpg" alt=""></div>
+        </div>
+    </section>
+    <section class="sec band">
+        <div class="wrap">
+            <div class="reveal glass leaf text-center px-8 py-12 max-w-4xl mx-auto">
+                <h2 class="h2">Come say hello</h2>
+                <p class="text-white/70 mt-2">Visit our Pune studio or write to us. We would love to hear from you.</p>
+                <a href="contact.html" class="btn btn-p mt-6">Contact Us <i data-lucide="arrow-right"
+                        class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </section>
+    <div id="site-footer"></div>
+    <script src="js/components.js?v=5"></script>
+    <script src="js/main.js?v=5"></script>
+    <script>
+        document.getElementById("hero").innerHTML = hero({ label: "ABOUT MORVEX", title: 'About<br><i class="text-[#E8D7C3]">Us</i>', sub: "A premium fashion and lifestyle brand built on quality, creativity and modern elegance.", imgs: ["about", "w6", "m1"], btns: [["Learn More ↓", "#next", 1], ["Shop Collections", "collections.html"]], chips: [["calendar", "Since 2019"], ["map-pin", "Designed in Pune"], ["award", "Premium quality"]], crumb: "Home / About", badge: ["Since 2019", "Designed in Pune"] });
+        vals.innerHTML = [["gem", "Quality first", "Premium fabrics, precise tailoring and thorough checks on every piece."], ["pen-tool", "Creative design", "Modern silhouettes with a nod to Indian craft and heritage."], ["heart-handshake", "Care for people", "Fair partnerships with artisans and a service team that listens."]].map(([i, t, d], k) => '<div class="reveal lift glass gcard text-center" style="transition-delay:' + k * 90 + 'ms"><span class="w-14 h-14 mx-auto rounded-full bg-[#B99A72]/20 grid place-items-center"><i data-lucide="' + i + '" class="w-6 h-6 gold"></i></span><h3 class="font-serif text-3xl mt-4">' + t + '</h3><p class="text-sm text-white/65 mt-2">' + d + '</p></div>').join("");
+        tl.innerHTML = [["2019", "MORVEX is founded in Pune with a small collection of tailored essentials."], ["2021", "We launch women's and kids' lines and open our online store."], ["2023", "Our festive and ethnic edit becomes a customer favourite."], ["2026", "10,000+ happy customers and a growing studio team."]].map(([y, t]) => '<li class="reveal relative pl-8"><span class="absolute -left-[7px] top-2 w-3 h-3 rounded-full bg-[#B99A72] ring-4 ring-[#B99A72]/20"></span><b class="font-serif text-3xl gold">' + y + '</b><p class="text-white/70 text-sm mt-1">' + t + '</p></li>').join("");
+    </script>
+</body>
+
+</html>

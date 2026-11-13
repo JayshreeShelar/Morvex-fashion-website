@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MORVEX – Your Bag</title>
+    <meta name="description" content="MORVEX – premium fashion and lifestyle brand.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
+    <link rel="stylesheet" href="css/style.css?v=5">
+</head>
+
+<body>
+    <div id="site-header"></div>
+    <section class="hero !items-start"><img src="assets/w7.jpg" alt=""
+            class="bg w-full h-full object-cover opacity-25 blur-2xl scale-125">
+        <div class="bg bg-[#141211]/70"></div>
+        <div class="wrap relative py-10">
+            <p class="eyebrow rise">SHOPPING BAG</p>
+            <div class="flex justify-between items-end flex-wrap gap-2 rise d1">
+                <h1 class="font-serif text-5xl" id="title">Your Cart</h1><a href="collections.html"
+                    class="btn btn-sm">Continue Shopping →</a>
+            </div>
+            <div class="mt-8 grid lg:grid-cols-[1fr_380px] gap-8 rise d2">
+                <div id="items" class="space-y-4"></div>
+                <aside class="glass gcard h-fit">
+                    <h2 class="font-serif text-3xl mb-4">Price Details</h2>
+                    <dl class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <dt>Subtotal</dt>
+                            <dd id="sub"></dd>
+                        </div>
+                        <div class="flex justify-between">
+                            <dt>Shipping</dt>
+                            <dd id="ship"></dd>
+                        </div>
+                        <div class="flex justify-between">
+                            <dt>Discount</dt>
+                            <dd id="disc">₹0</dd>
+                        </div>
+                        <div class="flex justify-between font-semibold border-t border-white/20 pt-3 text-lg">
+                            <dt>Total</dt>
+                            <dd id="tot"></dd>
+                        </div>
+                    </dl>
+                    <a href="checkout.html" class="btn btn-p w-full mt-5">Proceed to Checkout →</a>
+                    <div class="mt-4 flex gap-2"><input id="code" placeholder="Enter Coupon Code"
+                            class="field !rounded-full !py-2.5"><button id="apply" class="btn btn-sm">Apply</button>
+                    </div>
+                    <p id="msg" class="text-xs mt-2 text-white/55"></p>
+                    <ul class="mt-5 space-y-2 text-xs text-white/60">
+                        <li class="flex gap-2"><i data-lucide="truck" class="w-4 h-4 gold"></i>Free shipping above ₹1999
+                        </li>
+                        <li class="flex gap-2"><i data-lucide="rotate-ccw" class="w-4 h-4 gold"></i>30-day easy returns
+                        </li>
+                        <li class="flex gap-2"><i data-lucide="shield-check" class="w-4 h-4 gold"></i>100% secure
+                            payments</li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <section class="sec band">
+        <div class="wrap">
+            <h2 class="h2 text-center reveal">You May Also Like</h2>
+            <div id="rel" class="mt-9 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"></div>
+        </div>
+    </section>
+    <div id="site-footer"></div>
+    <script src="js/components.js?v=5"></script>
+    <script src="js/main.js?v=5"></script>
+    <script>
+        let off = 0; const draw = () => {
+            const c = getCart(), rows = c.map(i => ({ ...PRODUCTS.find(p => p.id == i.id), qty: i.qty })), n = c.reduce((a, i) => a + i.qty, 0);
+            title.textContent = "Your Cart (" + n + " item" + (n == 1 ? "" : "s") + ")";
+            items.innerHTML = rows.length ? rows.map(r => `<div class="lift glass gcard !p-4 flex gap-4 items-center"><a href="product.html?id=${r.id}"><div class="fitw w-24 aspect-[2/3] rounded-2xl">${fit(r.img, r.name)}</div></a><div class="flex-1 min-w-0"><h3 class="font-medium">${r.name}</h3><p class="text-xs text-white/55">${r.cat}</p><p class="mt-1 font-medium">${money(r.price)}</p></div><div class="flex items-center gap-3"><div class="glass rounded-full flex items-center"><button onclick="chg(${r.id},-1)" class="w-9 h-9" aria-label="Less">−</button><b class="w-6 text-center text-sm">${r.qty}</b><button onclick="chg(${r.id},1)" class="w-9 h-9" aria-label="More">+</button></div><button onclick="chg(${r.id},-99)" aria-label="Remove" class="text-white/50 hover:text-red-300"><i data-lucide="trash-2" class="w-5 h-5"></i></button></div></div>`).join("") : '<div class="glass gcard text-center py-12"><i data-lucide="shopping-bag" class="w-10 h-10 mx-auto gold"></i><p class="font-serif text-3xl mt-3">Your bag is empty</p><a href="collections.html" class="btn btn-p mt-5">Browse the collection</a></div>';
+            const s = rows.reduce((a, r) => a + r.price * r.qty, 0), d = Math.round(s * off), sh = s && s < 1999 ? 99 : 0;
+            sub.textContent = money(s); ship.textContent = sh ? money(sh) : "Free"; disc.textContent = "-" + money(d); tot.textContent = money(s - d + sh); lucide.createIcons()
+        };
+        const chg = (id, n) => { const c = getCart(), i = c.find(x => x.id == id); i.qty += n; setCart(c.filter(x => x.qty > 0)); draw() };
+        apply.onclick = () => { const ok = code.value.trim().toUpperCase() == "WELCOME20"; off = ok ? .2 : 0; msg.textContent = ok ? "WELCOME20 applied: 20% off." : "Code not recognised. Try WELCOME20."; draw() };
+        const first = getCart()[0], rc = first ? PRODUCTS.find(p => p.id == first.id).cat : "Women"; rel.innerHTML = PRODUCTS.filter(p => p.cat == rc && !getCart().some(i => i.id == p.id)).slice(0, 4).map(card).join(""); draw();
+    </script>
+</body>
+
+</html>
