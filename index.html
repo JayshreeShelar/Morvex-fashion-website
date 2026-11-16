@@ -1,118 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MORVEX – Elevated Essentials for Modern Living</title><meta name="description" content="MORVEX – premium fashion and lifestyle brand.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/favicon.png">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script><script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script>tailwind.config={theme:{extend:{fontFamily:{serif:["Cormorant Garamond","serif"],sans:["Jost","sans-serif"]}}}}</script><link rel="stylesheet" href="css/style.css?v=8"></head><body><div id="site-header"></div>
+<section id="hero"></section>
+<section id="next" class="band py-4 overflow-hidden"><div class="marq text-[#E8D7C3]/75 font-serif text-2xl italic whitespace-nowrap" id="mq"></div></section>
+<section class="sec"><div class="wrap grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+<div class="reveal lift glass gcard"><b class="font-serif text-4xl gold" data-count="10000" data-suf="+">0</b><p class="text-xs text-white/60 mt-1">Happy Customers</p></div><div class="reveal lift glass gcard"><b class="font-serif text-4xl gold" data-count="4.9" data-dec="1" data-suf="/5">0</b><p class="text-xs text-white/60 mt-1">Customer Rating</p></div><div class="reveal lift glass gcard"><b class="font-serif text-4xl gold" data-count="500" data-suf="+">0</b><p class="text-xs text-white/60 mt-1">Premium Styles</p></div><div class="reveal lift glass gcard"><b class="font-serif text-4xl gold" data-count="30" data-suf=" Days">0</b><p class="text-xs text-white/60 mt-1">Easy Returns</p></div></div></section>
+<section class="sec band"><div class="wrap"><div class="text-center reveal"><h2 class="h2">Shop by Category</h2><p class="text-sm text-white/60 mt-2">Find your perfect style</p></div><div id="cats" class="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"></div></div></section>
+<section class="sec"><div class="wrap"><div class="text-center reveal"><p class="eyebrow">FEATURED EDITS</p><h2 class="h2 mt-2">Banners of the Season</h2></div><div id="banners" class="mt-9 grid md:grid-cols-2 gap-5"></div></div></section>
+<div id="catrows"></div>
+<section class="sec"><div class="wrap grid md:grid-cols-2 gap-10 items-center"><div class="reveal grid grid-cols-2 gap-4"><div class="leaf zoom fitw glass aspect-[2/3]"><img class="fitbg" src="assets/about.jpg" alt=""><img class="fitimg" src="assets/about.jpg" alt=""></div><div class="leaf2 zoom fitw glass aspect-[2/3] mt-10"><img class="fitbg" src="assets/w2.jpg" alt=""><img class="fitimg" src="assets/w2.jpg" alt=""></div></div>
+<div class="reveal glass gcard !p-8"><p class="eyebrow">THE MORVEX STORY</p><h2 class="h2 mt-3">Fashion beyond limits, made to last.</h2><p class="mt-4 text-white/70 leading-relaxed">MORVEX began with a simple belief: great style should be effortless. We design versatile pieces in premium fabrics, from sharply tailored blazers to hand-embroidered festive wear, so you look refined at every occasion.</p><p class="mt-3 text-white/70 leading-relaxed">Every garment is cut with care, finished by skilled artisans and checked for quality before it reaches you.</p><a href="about.html" class="btn mt-6">Read Our Story <i data-lucide="arrow-right" class="w-4 h-4"></i></a></div></div></section>
+<section class="sec band"><div class="wrap"><h2 class="h2 text-center reveal">Why MORVEX</h2><div class="mt-9 grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="why"></div></div></section>
+<section class="sec"><div class="wrap"><h2 class="h2 text-center reveal">Loved by our customers</h2><div class="mt-9 grid md:grid-cols-3 gap-5" id="rev"></div></div></section>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>MORVEX – Elevated Essentials for Modern Living</title>
-    <meta name="description" content="MORVEX – premium fashion and lifestyle brand.">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="apple-touch-icon" href="assets/favicon.png">
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
-        rel="stylesheet">
-    <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
-    <link rel="stylesheet" href="css/style.css?v=8">
-</head>
-
-<body>
-    <div id="site-header"></div>
-    <section id="hero"></section>
-    <section id="next" class="band py-4 overflow-hidden">
-        <div class="marq text-[#E8D7C3]/75 font-serif text-2xl italic whitespace-nowrap" id="mq"></div>
-    </section>
-    <section class="sec">
-        <div class="wrap grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div class="reveal lift glass gcard"><b class="font-serif text-4xl gold" data-count="10000"
-                    data-suf="+">0</b>
-                <p class="text-xs text-white/60 mt-1">Happy Customers</p>
-            </div>
-            <div class="reveal lift glass gcard"><b class="font-serif text-4xl gold" data-count="4.9" data-dec="1"
-                    data-suf="/5">0</b>
-                <p class="text-xs text-white/60 mt-1">Customer Rating</p>
-            </div>
-            <div class="reveal lift glass gcard"><b class="font-serif text-4xl gold" data-count="500" data-suf="+">0</b>
-                <p class="text-xs text-white/60 mt-1">Premium Styles</p>
-            </div>
-            <div class="reveal lift glass gcard"><b class="font-serif text-4xl gold" data-count="30"
-                    data-suf=" Days">0</b>
-                <p class="text-xs text-white/60 mt-1">Easy Returns</p>
-            </div>
-        </div>
-    </section>
-    <section class="sec band">
-        <div class="wrap">
-            <div class="text-center reveal">
-                <h2 class="h2">Shop by Category</h2>
-                <p class="text-sm text-white/60 mt-2">Find your perfect style</p>
-            </div>
-            <div id="cats" class="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"></div>
-        </div>
-    </section>
-    <section class="sec">
-        <div class="wrap">
-            <div class="text-center reveal">
-                <p class="eyebrow">FEATURED EDITS</p>
-                <h2 class="h2 mt-2">Banners of the Season</h2>
-            </div>
-            <div id="banners" class="mt-9 grid md:grid-cols-2 gap-5"></div>
-        </div>
-    </section>
-    <div id="catrows"></div>
-    <section class="sec">
-        <div class="wrap grid md:grid-cols-2 gap-10 items-center">
-            <div class="reveal grid grid-cols-2 gap-4">
-                <div class="leaf zoom fitw glass aspect-[2/3]"><img class="fitbg" src="assets/about.jpg" alt=""><img
-                        class="fitimg" src="assets/about.jpg" alt=""></div>
-                <div class="leaf2 zoom fitw glass aspect-[2/3] mt-10"><img class="fitbg" src="assets/w2.jpg" alt=""><img
-                        class="fitimg" src="assets/w2.jpg" alt=""></div>
-            </div>
-            <div class="reveal glass gcard !p-8">
-                <p class="eyebrow">THE MORVEX STORY</p>
-                <h2 class="h2 mt-3">Fashion beyond limits, made to last.</h2>
-                <p class="mt-4 text-white/70 leading-relaxed">MORVEX began with a simple belief: great style should be
-                    effortless. We design versatile pieces in premium fabrics, from sharply tailored blazers to
-                    hand-embroidered festive wear, so you look refined at every occasion.</p>
-                <p class="mt-3 text-white/70 leading-relaxed">Every garment is cut with care, finished by skilled
-                    artisans and checked for quality before it reaches you.</p><a href="about.html"
-                    class="btn mt-6">Read Our Story <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-            </div>
-        </div>
-    </section>
-    <section class="sec band">
-        <div class="wrap">
-            <h2 class="h2 text-center reveal">Why MORVEX</h2>
-            <div class="mt-9 grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="why"></div>
-        </div>
-    </section>
-    <section class="sec">
-        <div class="wrap">
-            <h2 class="h2 text-center reveal">Loved by our customers</h2>
-            <div class="mt-9 grid md:grid-cols-3 gap-5" id="rev"></div>
-        </div>
-    </section>
-
-    <div id="cta"></div>
-    <div id="site-footer"></div>
-    <script src="js/components.js?v=8"></script>
-    <script src="js/main.js?v=8"></script>
-    <script>
-        document.getElementById("hero").innerHTML = hero({ label: "PREMIUM FASHION BRAND", title: 'Elevated Essentials<br><i class="text-[#E8D7C3]">for Modern Living</i>', sub: "Timeless style, premium quality, and versatile pieces designed for today and beyond.", imgs: ["hero", "w4", "m5"], btns: [["Shop New Arrivals →", "collections.html", 1], ["▶ Watch the Collection", "#next"]], chips: [["star", "4.9/5 rated"], ["users", "10K+ customers"], ["truck", "Free shipping ₹1999+"]], badge: ["Autumn / Winter 2026", "New season is here"] });
-        const w = ["New Arrivals", "Free Shipping Above ₹1999", "Premium Fabrics", "Easy 30-Day Returns", "Flat 20% Off First Order", "Made for Modern Living"];
-        mq.innerHTML = [...w, ...w, ...w, ...w].map(x => '<span class="px-8">' + x + ' <span class="gold">✦</span></span>').join("");
-        cats.innerHTML = [["Men's", "men"], ["Women's", "women"], ["Kids", "kids"], ["Western", "collections"], ["Ethnic", "collections"], ["Accessories", "collections"]].map(([n, h], i) => '<a href="' + h + '.html" class="tile glass ' + (i % 2 ? "leaf2" : "leaf") + ' reveal" style="transition-delay:' + i * 80 + 'ms"><div class="' + (i % 2 ? "timg2" : "timg") + ' fitw"><img class="fitbg" src="assets/cat' + (i + 1) + '.jpg?v=8" alt=""><img class="fitimg" src="assets/cat' + (i + 1) + '.jpg?v=8" alt="' + n + '"></div><p class="text-center text-[13px] py-2.5">' + n + (i < 5 ? " Collection" : "") + ' →</p></a>').join("");
-        const ban = o => o.wide ? '<a href="' + o.h + '" class="banner banner-wide lift reveal ' + o.c + '" style="background-image:linear-gradient(120deg,' + o.g[0] + ',' + o.g[1] + ')"><div class="bw-txt relative z-10"><p class="eyebrow">' + o.e + '</p><h3 class="font-serif text-3xl md:text-5xl mt-2 leading-tight">' + o.t + '</h3><p class="text-sm text-white/75 mt-2">' + o.s + '</p><span class="btn btn-p mt-5">' + o.b + ' →</span></div><div class="bw-img fitw framed leaf2 z-10"><img class="fitimg" style="object-position:center 14%" src="assets/' + o.i + '.jpg" alt="Burgundy evening gown"></div></a>' : '<a href="' + o.h + '" class="banner lift reveal ' + o.c + '" style="background-image:linear-gradient(120deg,' + o.g[0] + ',' + o.g[1] + ')"><div class="relative z-10 p-7 md:p-10 w-[60%]"><p class="eyebrow">' + o.e + '</p><h3 class="font-serif text-3xl md:text-5xl mt-2 leading-tight">' + o.t + '</h3><p class="text-sm text-white/75 mt-2">' + o.s + '</p><span class="btn btn-p mt-5">' + o.b + ' →</span></div><div class="fitw framed leaf2 absolute right-4 top-4 bottom-4 w-[34%] z-10"><img class="fitimg" src="assets/' + o.i + '.jpg" alt=""></div></a>';
-        banners.innerHTML = [{ h: "women.html", c: "md:col-span-2 min-h-[340px]", g: ["rgba(122,31,61,.6)", "rgba(40,20,28,.7)"], e: "AUTUMN / WINTER 2026", t: "New Season<br>Collection", s: "Fresh styles. New vibes.", b: "Explore Collection", i: "season", wide: 1, p: "30%" },
-        { h: "men.html", c: "min-h-[300px]", g: ["rgba(40,40,46,.7)", "rgba(20,18,17,.8)"], e: "WEDDING &amp; FESTIVE", t: "The Men&rsquo;s<br>Evening Edit", s: "Tuxedos, sherwanis and more.", b: "Shop Men", i: "m7", p: "28%" },
-        { h: "kids.html", c: "min-h-[300px]", g: ["rgba(150,70,90,.55)", "rgba(40,20,28,.75)"], e: "LITTLE MORVEX", t: "Kids&rsquo; Party<br>Edit", s: "Charming looks for every occasion.", b: "Shop Kids", i: "k13", p: "25%" }].map(ban).join("");
-        catrows.innerHTML = [["FOR HIM", "Men&rsquo;s Edit", "men", [18, 5, 9, 1]], ["FOR HER", "Women&rsquo;s Edit", "women", [19, 14, 11, 16]], ["FOR LITTLE ONES", "Kids&rsquo; Edit", "kids", [29, 30, 31, 21]]].map(([e, t, h, ids], k) => '<section class="sec ' + (k % 2 ? "" : "band") + '"><div class="wrap"><div class="reveal flex justify-between items-end flex-wrap gap-3"><div><p class="eyebrow">' + e + '</p><h2 class="h2 mt-1">' + t + '</h2></div><a href="' + h + '.html" class="btn btn-sm">View all ' + h + ' →</a></div><div class="mt-9 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">' + ids.map(id => card(PRODUCTS.find(p => p.id == id))).join("") + '</div></div></section>').join("");
-        why.innerHTML = [["truck", "Free Shipping", "On every order above ₹1999, delivered in 3-5 days."], ["rotate-ccw", "Easy Returns", "Not the right fit? Return or exchange within 30 days."], ["shield-check", "Secure Payment", "UPI, cards, net banking and cash on delivery."], ["gem", "Premium Quality", "Carefully chosen fabrics, finished to last."]].map(([i, t, d], k) => '<div class="reveal lift glass gcard text-center" style="transition-delay:' + k * 90 + 'ms"><span class="w-12 h-12 mx-auto rounded-full bg-[#B99A72]/20 grid place-items-center"><i data-lucide="' + i + '" class="w-5 h-5 gold"></i></span><h3 class="mt-4 font-medium">' + t + '</h3><p class="text-sm text-white/60 mt-1">' + d + '</p></div>').join("");
-        rev.innerHTML = [["Aarav Mehta", "Pune", "The tuxedo fits perfectly and the fabric feels truly premium. Delivery was quick too."], ["Riya Kulkarni", "Mumbai", "Ordered the lehenga set for a wedding and got compliments all evening. Stitching is beautiful."], ["Kabir Shah", "Nashik", "Great quality kids' wear and a smooth exchange process. MORVEX is now my go-to brand."]].map(([n, c, t], k) => '<div class="reveal lift glass gcard" style="transition-delay:' + k * 90 + 'ms"><p class="gold">★★★★★</p><p class="mt-3 text-white/80 leading-relaxed">“' + t + '”</p><p class="mt-5 text-sm font-medium">' + n + '<span class="text-white/50 font-normal"> · ' + c + '</span></p></div>').join("");
-        document.getElementById("cta").innerHTML = cta();
-    </script>
-</body>
-
-</html>
+<div id="cta"></div>
+<div id="site-footer"></div><script src="js/components.js?v=8"></script><script src="js/main.js?v=8"></script>
+<script>
+document.getElementById("hero").innerHTML=hero({label:"PREMIUM FASHION BRAND",title:'Elevated Essentials<br><i class="text-[#E8D7C3]">for Modern Living</i>',sub:"Timeless style, premium quality, and versatile pieces designed for today and beyond.",imgs:["hero","w4","m5"],btns:[["Shop New Arrivals →","collections.html",1],["▶ Watch the Collection","#next"]],chips:[["star","4.9/5 rated"],["users","10K+ customers"],["truck","Free shipping ₹1999+"]],badge:["Autumn / Winter 2026","New season is here"]});
+const w=["New Arrivals","Free Shipping Above ₹1999","Premium Fabrics","Easy 30-Day Returns","Flat 20% Off First Order","Made for Modern Living"];
+mq.innerHTML=[...w,...w,...w,...w].map(x=>'<span class="px-8">'+x+' <span class="gold">✦</span></span>').join("");
+cats.innerHTML=[["Men's","men"],["Women's","women"],["Kids","kids"],["Western","collections"],["Ethnic","collections"],["Accessories","collections"]].map(([n,h],i)=>'<a href="'+h+'.html" class="tile glass '+(i%2?"leaf2":"leaf")+' reveal" style="transition-delay:'+i*80+'ms"><div class="'+(i%2?"timg2":"timg")+' fitw"><img class="fitbg" src="assets/cat'+(i+1)+'.jpg?v=8" alt=""><img class="fitimg" src="assets/cat'+(i+1)+'.jpg?v=8" alt="'+n+'"></div><p class="text-center text-[13px] py-2.5">'+n+(i<5?" Collection":"")+' →</p></a>').join("");
+const ban=o=>o.wide?'<a href="'+o.h+'" class="banner banner-wide lift reveal '+o.c+'" style="background-image:linear-gradient(120deg,'+o.g[0]+','+o.g[1]+')"><div class="bw-txt relative z-10"><p class="eyebrow">'+o.e+'</p><h3 class="font-serif text-3xl md:text-5xl mt-2 leading-tight">'+o.t+'</h3><p class="text-sm text-white/75 mt-2">'+o.s+'</p><span class="btn btn-p mt-5">'+o.b+' →</span></div><div class="bw-img fitw framed leaf2 z-10"><img class="fitimg" style="object-position:center 14%" src="assets/'+o.i+'.jpg" alt="Burgundy evening gown"></div></a>':'<a href="'+o.h+'" class="banner lift reveal '+o.c+'" style="background-image:linear-gradient(120deg,'+o.g[0]+','+o.g[1]+')"><div class="relative z-10 p-7 md:p-10 w-[60%]"><p class="eyebrow">'+o.e+'</p><h3 class="font-serif text-3xl md:text-5xl mt-2 leading-tight">'+o.t+'</h3><p class="text-sm text-white/75 mt-2">'+o.s+'</p><span class="btn btn-p mt-5">'+o.b+' →</span></div><div class="fitw framed leaf2 absolute right-4 top-4 bottom-4 w-[34%] z-10"><img class="fitimg" src="assets/'+o.i+'.jpg" alt=""></div></a>';
+banners.innerHTML=[{h:"women.html",c:"md:col-span-2 min-h-[340px]",g:["rgba(122,31,61,.6)","rgba(40,20,28,.7)"],e:"AUTUMN / WINTER 2026",t:"New Season<br>Collection",s:"Fresh styles. New vibes.",b:"Explore Collection",i:"season",wide:1,p:"30%"},
+{h:"men.html",c:"min-h-[300px]",g:["rgba(40,40,46,.7)","rgba(20,18,17,.8)"],e:"WEDDING &amp; FESTIVE",t:"The Men&rsquo;s<br>Evening Edit",s:"Tuxedos, sherwanis and more.",b:"Shop Men",i:"m7",p:"28%"},
+{h:"kids.html",c:"min-h-[300px]",g:["rgba(150,70,90,.55)","rgba(40,20,28,.75)"],e:"LITTLE MORVEX",t:"Kids&rsquo; Party<br>Edit",s:"Charming looks for every occasion.",b:"Shop Kids",i:"k13",p:"25%"}].map(ban).join("");
+catrows.innerHTML=[["FOR HIM","Men&rsquo;s Edit","men",[18,5,9,1]],["FOR HER","Women&rsquo;s Edit","women",[19,14,11,16]],["FOR LITTLE ONES","Kids&rsquo; Edit","kids",[29,30,31,21]]].map(([e,t,h,ids],k)=>'<section class="sec '+(k%2?"":"band")+'"><div class="wrap"><div class="reveal flex justify-between items-end flex-wrap gap-3"><div><p class="eyebrow">'+e+'</p><h2 class="h2 mt-1">'+t+'</h2></div><a href="'+h+'.html" class="btn btn-sm">View all '+h+' →</a></div><div class="mt-9 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">'+ids.map(id=>card(PRODUCTS.find(p=>p.id==id))).join("")+'</div></div></section>').join("");
+why.innerHTML=[["truck","Free Shipping","On every order above ₹1999, delivered in 3-5 days."],["rotate-ccw","Easy Returns","Not the right fit? Return or exchange within 30 days."],["shield-check","Secure Payment","UPI, cards, net banking and cash on delivery."],["gem","Premium Quality","Carefully chosen fabrics, finished to last."]].map(([i,t,d],k)=>'<div class="reveal lift glass gcard text-center" style="transition-delay:'+k*90+'ms"><span class="w-12 h-12 mx-auto rounded-full bg-[#B99A72]/20 grid place-items-center"><i data-lucide="'+i+'" class="w-5 h-5 gold"></i></span><h3 class="mt-4 font-medium">'+t+'</h3><p class="text-sm text-white/60 mt-1">'+d+'</p></div>').join("");
+rev.innerHTML=[["Aarav Mehta","Pune","The tuxedo fits perfectly and the fabric feels truly premium. Delivery was quick too."],["Riya Kulkarni","Mumbai","Ordered the lehenga set for a wedding and got compliments all evening. Stitching is beautiful."],["Kabir Shah","Nashik","Great quality kids' wear and a smooth exchange process. MORVEX is now my go-to brand."]].map(([n,c,t],k)=>'<div class="reveal lift glass gcard" style="transition-delay:'+k*90+'ms"><p class="gold">★★★★★</p><p class="mt-3 text-white/80 leading-relaxed">“'+t+'”</p><p class="mt-5 text-sm font-medium">'+n+'<span class="text-white/50 font-normal"> · '+c+'</span></p></div>').join("");
+document.getElementById("cta").innerHTML=cta();
+</script></body></html>
