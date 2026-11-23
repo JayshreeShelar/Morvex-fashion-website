@@ -39,6 +39,7 @@
     <script src="js/main.js?v=9"></script>
     <script>
         if (currentUser()) afterAuth();
+        if (/checkout\.html/.test(location.search)) document.querySelector("form#af p.text-sm").textContent = "Please log in to continue to checkout";
         const q = location.search; document.querySelectorAll("a[data-sw]").forEach(a => a.href = a.dataset.sw + q);
         af.onsubmit = async e => {
             e.preventDefault(); const f = af.elements, em = f.e.value.trim(), pw = f.p.value;
