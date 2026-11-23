@@ -26,13 +26,51 @@ function hero(o) {
 ${o.badge ? `<div class="glass float absolute left-1/2 -translate-x-1/2 -bottom-4 rounded-2xl px-5 py-3 text-xs text-center z-10"><b class="block text-sm">${o.badge[0]}</b>${o.badge[1]}</div>` : ""}</div></div>
 <a href="#next" class="scroll-ind" aria-label="Scroll down"><i data-lucide="chevrons-down" class="w-6 h-6"></i></a></div>`}
 function cta() { return `<section class="sec"><div class="wrap"><div class="reveal glass leaf px-8 py-10 flex flex-wrap items-center justify-between gap-5" style="background:linear-gradient(120deg,rgba(122,31,61,.55),rgba(185,154,114,.18))"><div><h2 class="h2">Shop More. Save More.</h2><p class="text-white/70 mt-1 text-sm">Up to 50% off selected styles. Use WELCOME20 for 20% off your first order.</p></div><a href="sale.html" class="btn btn-p">Shop Sale <i data-lucide="arrow-right" class="w-4 h-4"></i></a></div></div></section>` }
+/* ===== AUTH (localStorage) : mvx-users = sagle registered users, mvx-user = current logged-in user ===== */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const getUsers = () => { try { return JSON.parse(localStorage.getItem("mvx-users") || "[]") } catch (e) { return [] } };
+const currentUser = () => { try { return JSON.parse(localStorage.getItem("mvx-user") || "null") } catch (e) { return null } };
+async function hashPw(p) { try { const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("mvx:" + p)); return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, "0")).join("") } catch (e) { return "plain:" + p } }
+function setSession(u) { try { localStorage.setItem("mvx-user", JSON.stringify({ name: u.name, email: u.email })) } catch (e) { } }
+function afterAuth() { const n = new URLSearchParams(location.search).get("next"); location.href = /^[\w-]+\.html(\?[\w=&%.-]*)?$/.test(n || "") ? n : "index.html" }
+async function registerUser(name, email, pw) {
+    email = email.trim().toLowerCase(); const us = getUsers();
+    if (us.some(u => u.email === email)) return "This email is already registered. Please log in.";
+    us.push({ name: name.trim(), email, pw: await hashPw(pw) });
+    try { localStorage.setItem("mvx-users", JSON.stringify(us)) } catch (e) { return "Could not save your account (browser storage is blocked)." }
+    setSession({ name: name.trim(), email }); return null
+}
+async function loginUser(email, pw) {
+    email = email.trim().toLowerCase(); const u = getUsers().find(x => x.email === email);
+    if (!u) return "No account found with this email. Please register first.";
+    if (u.pw !== await hashPw(pw)) return "Incorrect password. Please try again.";
+    setSession(u); return null
+}
+function logoutUser() { try { localStorage.removeItem("mvx-user") } catch (e) { } location.href = "index.html" }
+function accountMenu() {
+    const u = currentUser(), here = encodeURIComponent(location.pathname.split("/").pop() || "index.html"), it = "flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-[#F4EEE6]/85 hover:bg-white/10 hover:text-[#E8D7C3] transition w-full text-left";
+    if (u) return `<div class="px-4 py-3 border-b border-white/10"><p class="text-[10px] tracking-widest gold">SIGNED IN AS</p><p class="text-sm font-medium truncate mt-0.5">${esc(u.name)}</p><p class="text-[11px] text-white/50 truncate">${esc(u.email)}</p></div>
+<a href="checkout.html" class="${it}"><i data-lucide="credit-card" class="w-4 h-4 gold"></i>Check Out</a>
+<button type="button" id="logout-btn" class="${it} border-t border-white/10"><i data-lucide="log-out" class="w-4 h-4 gold"></i>Log Out</button>`;
+    return `<div class="px-4 py-3 border-b border-white/10"><p class="text-sm font-medium">Welcome to MORVEX</p><p class="text-[11px] text-white/50">Log in to check out faster</p></div>
+<a href="login.html?next=${here}" class="${it}"><i data-lucide="log-in" class="w-4 h-4 gold"></i>Login</a>
+<a href="register.html?next=${here}" class="${it} border-t border-white/10"><i data-lucide="user-plus" class="w-4 h-4 gold"></i>Register</a>`
+}
+function initAccount() {
+    const box = document.getElementById("acct"), btn = document.getElementById("acct-btn"), menu = document.getElementById("acct-menu"); if (!box) return;
+    const set = o => { menu.classList.toggle("hidden", !o); btn.setAttribute("aria-expanded", o) };
+    btn.onclick = e => { e.stopPropagation(); set(menu.classList.contains("hidden")) };
+    document.addEventListener("click", e => { if (!box.contains(e.target)) set(false) });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") set(false) });
+    const lo = document.getElementById("logout-btn"); if (lo) lo.onclick = logoutUser
+}
 function renderHeader() {
     const here = location.pathname.split("/").pop() || "index.html";
     document.getElementById("site-header").innerHTML = `<div class="bg-[#141211] text-[#E8D7C3] text-[10px] tracking-wide text-center py-1.5 border-b border-white/10 px-2">Free Shipping on Orders Above ₹1999 | Flat 20% OFF on First Order | Use Code: <b class="gold">WELCOME20</b></div>
 <header class="bg-[#141211]/70 backdrop-blur-2xl border-b border-white/10"><div class="max-w-7xl mx-auto px-5 h-14 flex items-center justify-between">
 <a href="index.html" class="flex items-center gap-2.5"><img src="assets/favicon.svg" alt="" class="w-7 h-7 rounded-lg"><span class="font-serif text-lg tracking-[0.3em] xl:tracking-[0.4em]">MORVEX</span></a>
 <nav class="hidden lg:flex gap-4 xl:gap-6 text-[12.5px] xl:text-[13px] whitespace-nowrap text-[#F4EEE6]/80">${NAV.map(([n, h]) => `<a href="${h}" class="nav-link ${h === here ? "active text-[#F4EEE6]" : ""}">${n}</a>`).join("")}</nav>
-<div class="flex items-center gap-3 xl:gap-4"><button id="sb" aria-label="Search"><i data-lucide="search" class="w-[18px] h-[18px]"></i></button><a href="contact.html" aria-label="Account"><i data-lucide="user" class="w-[18px] h-[18px]"></i></a><a href="wishlist.html" class="relative" aria-label="Wishlist"><i data-lucide="heart" class="w-[18px] h-[18px]"></i><span id="wish-count" class="hidden absolute -top-2 -right-2 bg-[#E36A86] text-white text-[9px] font-semibold rounded-full w-4 h-4 grid place-items-center">0</span></a>
+<div class="flex items-center gap-3 xl:gap-4"><button id="sb" aria-label="Search"><i data-lucide="search" class="w-[18px] h-[18px]"></i></button><div id="acct" class="relative"><button id="acct-btn" type="button" aria-label="Account" aria-haspopup="true" aria-expanded="false" class="relative block"><i data-lucide="user" class="w-[18px] h-[18px]"></i>${currentUser() ? '<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#B99A72]"></span>' : ""}</button><div id="acct-menu" class="hidden absolute right-0 top-full mt-4 w-60 rounded-2xl overflow-hidden z-[60] border border-white/15 shadow-2xl" style="background:rgba(20,18,17,.97)">${accountMenu()}</div></div><a href="wishlist.html" class="relative" aria-label="Wishlist"><i data-lucide="heart" class="w-[18px] h-[18px]"></i><span id="wish-count" class="hidden absolute -top-2 -right-2 bg-[#E36A86] text-white text-[9px] font-semibold rounded-full w-4 h-4 grid place-items-center">0</span></a>
 <a href="cart.html" class="relative" aria-label="Bag"><i data-lucide="shopping-bag" class="w-[18px] h-[18px]"></i><span id="cart-count" class="absolute -top-2 -right-2 bg-[#B99A72] text-[#171717] text-[9px] font-semibold rounded-full w-4 h-4 grid place-items-center">${cartCount()}</span></a><button id="mb" class="lg:hidden" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu" class="w-5 h-5 ic-open"></i><i data-lucide="x" class="w-5 h-5 ic-close hidden"></i></button></div></div>
 <div id="sp" class="hidden border-t border-white/10 px-5 py-3"><form id="sf" class="max-w-xl mx-auto flex gap-2"><input id="sq" placeholder="Search blazers, dresses, sherwanis…" class="field !rounded-full !py-2"><button class="btn btn-p btn-sm">Search</button></form></div>
 <nav id="mn" class="hidden lg:!hidden px-5 pb-3 flex-col gap-2 text-[#F4EEE6] text-sm">${NAV.map(([n, h]) => `<a href="${h}" class="py-1">${n}</a>`).join("")}</nav></header>`;
@@ -55,7 +93,7 @@ function initFx() {
     const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); if (e.target.dataset.count) count(e.target) } }), { threshold: .12 }) : null;
     document.querySelectorAll(".reveal:not(.in),[data-count]").forEach(el => { if (io) io.observe(el); else { el.classList.add("in"); if (el.dataset.count) count(el) } })
 }
-document.addEventListener("DOMContentLoaded", () => { renderHeader(); wishBadge(); renderFooter(); initFx(); lucide.createIcons() });
+document.addEventListener("DOMContentLoaded", () => { renderHeader(); initAccount(); wishBadge(); renderFooter(); initFx(); lucide.createIcons() });
 
 (function () {
     const rm = matchMedia("(prefers-reduced-motion:reduce)").matches, fine = matchMedia("(hover:hover) and (pointer:fine)").matches;

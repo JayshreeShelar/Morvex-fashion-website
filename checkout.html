@@ -65,8 +65,8 @@
         </div>
     </section>
     <div id="site-footer"></div>
-    <script src="js/components.js?v=8"></script>
-    <script src="js/main.js?v=8"></script>
+    <script src="js/components.js?v=9"></script>
+    <script src="js/main.js?v=9"></script>
     <script>
         const rows = getCart().map(i => ({ ...PRODUCTS.find(p => p.id == i.id), qty: i.qty })), sub = rows.reduce((a, x) => a + x.price * x.qty, 0), shp = sub && sub < 1999 ? 99 : 0;
         steps.innerHTML = ["Address", "Payment", "Review"].map((s, i) => '<span class="text-center ' + (i ? "opacity-60" : "") + '"><b class="opt on w-8 h-8 mx-auto mb-1 ' + (i ? "!bg-none !bg-white/10 !text-[#F4EEE6]" : "") + '">' + (i + 1) + '</b>' + s + '</span>').join("");

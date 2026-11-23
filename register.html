@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MORVEX – Register</title>
+    <meta name="description" content="MORVEX – premium fashion and lifestyle brand.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { serif: ["Cormorant Garamond", "serif"], sans: ["Jost", "sans-serif"] } } } }</script>
+    <link rel="stylesheet" href="css/style.css?v=8">
+</head>
+
+<body>
+    <div id="site-header"></div>
+    <section class="vh relative overflow-hidden justify-center px-4 py-5">
+        <img src="assets/w4.jpg" alt="" class="opacity-25 blur-2xl scale-125" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div class="bg-[#141211]/70" style="position:absolute;inset:0"></div>
+        <div class="relative w-full max-w-md rise">
+            <form id="af" class="glass gcard !p-6 grid gap-3" novalidate>
+                <div class="text-center"><p class="eyebrow">MORVEX ACCOUNT</p><h1 class="font-serif text-4xl mt-2">Create account</h1><p class="text-sm text-white/60 mt-1">Join MORVEX in a few seconds</p></div>
+                <input name="n" type="text" class="field" placeholder="Full name" autocomplete="name">
+                <input name="e" type="email" class="field" placeholder="Email address" autocomplete="email">
+                <input name="p" type="password" class="field" placeholder="Password (min 6 characters)" autocomplete="new-password">
+                <input name="c" type="password" class="field" placeholder="Confirm password" autocomplete="new-password">
+                <p id="er" class="text-xs text-red-300 min-h-[1rem]"></p>
+                <button class="btn btn-p justify-center">Create Account →</button>
+                <p class="text-center text-xs text-white/60">Already have an account? <a data-sw="login.html" href="login.html" class="underline gold">Log in</a></p>
+            </form>
+        </div>
+    </section>
+    <div id="site-footer" hidden></div>
+    <script src="js/components.js?v=9"></script>
+    <script src="js/main.js?v=9"></script>
+    <script>
+        if (currentUser()) afterAuth();
+        const q = location.search; document.querySelectorAll("a[data-sw]").forEach(a => a.href = a.dataset.sw + q);
+        af.onsubmit = async e => {
+            e.preventDefault(); const f = af.elements, n = f.n.value.trim(), em = f.e.value.trim(), pw = f.p.value;
+            if (n.length < 2) { er.textContent = "Please enter your name."; return }
+            if (!/^\S+@\S+\.\S+$/.test(em)) { er.textContent = "Enter a valid email address."; return }
+            if (pw.length < 6) { er.textContent = "Password must be at least 6 characters."; return }
+            if (pw !== f.c.value) { er.textContent = "Passwords do not match."; return }
+            const r = await registerUser(n, em, pw); if (r) { er.textContent = r; return }
+            er.textContent = ""; toast("Account created. Welcome, " + n.split(" ")[0] + "!"); setTimeout(afterAuth, 700)
+        };
+    </script>
+</body>
+
+</html>

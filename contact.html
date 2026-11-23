@@ -117,8 +117,8 @@
     </section>
     <div id="cta"></div>
     <div id="site-footer"></div>
-    <script src="js/components.js?v=8"></script>
-    <script src="js/main.js?v=8"></script>
+    <script src="js/components.js?v=9"></script>
+    <script src="js/main.js?v=9"></script>
     <script>
         document.getElementById("hero").innerHTML = hero({ label: "GET IN TOUCH", title: 'Contact<br><i class="text-[#E8D7C3]">Us</i>', sub: "We'd love to hear from you. Questions about an order, sizing or styling? Our team is here to help.", imgs: ["contact", "w5", "m4"], btns: [["Send a Message ↓", "#form", 1], ["Find Our Studio", "#map"]], chips: [["phone", "+91 98765 43210"], ["mail", "care@morvex.com"], ["clock", "Mon-Sat 10-8"]], crumb: "Home / Contact", badge: ["Replies in 24 hrs", "Mon-Sat support"] });
         info.innerHTML = [["phone", "Call us", "+91 98765 43210", "tel:+919876543210"], ["mail", "Email us", "care@morvex.com", "mailto:care@morvex.com"], ["map-pin", "Visit us", "Pune, Maharashtra - 411001", "#map"], ["clock", "Working hours", "Mon-Sat 10 AM - 8 PM", "#form"]].map(([i, t, v, h], k) => '<a href="' + h + '" class="lift glass gcard !p-4 flex gap-3 items-center" style="transition-delay:' + k * 90 + 'ms"><span class="w-10 h-10 shrink-0 rounded-full bg-[#B99A72]/20 grid place-items-center"><i data-lucide="' + i + '" class="w-5 h-5 gold"></i></span><span><h3 class="text-sm font-medium">' + t + '</h3><p class="text-xs text-white/65">' + v + '</p></span></a>').join("");
